@@ -4,8 +4,7 @@ printf works differently in kernel as it will simultaneously print multiple 'hel
 the running code commands are
 1) in linux terminal;
    > nvcc -O2 -arch=sm_75 hello.cu
-
-   > ./a.out
+   >> ./a.out
 2) in google colab
    >>!pip install nvcc4jupyter
    >>%load_ext nvcc4jupyter
