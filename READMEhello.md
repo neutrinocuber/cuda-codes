@@ -6,7 +6,9 @@ the running code commands are
    > nvcc -O2 -arch=sm_75 hello.cu  
    >./a.out
 2) in google colab
-   >!pip install nvcc4jupyter   
-   >%load_ext nvcc4jupyter   
+   >!pip install nvcc4jupyter
+      
+   >%load_ext nvcc4jupyter
+      
    >%%cuda -c "-I/does/not/exist -arch sm_75"   
      //rest of the code
