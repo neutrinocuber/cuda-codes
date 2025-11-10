@@ -19,7 +19,7 @@ int main(){
 
     cudaMemcpy(d_A,h_A,N*sizeof(int),cudaMemcpyHostToDevice);
     cudaMemcpy(d_B,h_B,N*sizeof(int),cudaMemcpyHostToDevice);
-    vector_add<<<1,10>>>(d_A,d_B,d_C,N);
+    vector_add<<<1,N>>>(d_A,d_B,d_C,N);
     cudaMemcpy(h_C,d_C,N*sizeof(int),cudaMemcpyDeviceToHost);
     printf("Array A+B=C: \n");
     for (int i=0; i<N; i++){
