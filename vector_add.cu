@@ -1,5 +1,5 @@
 #include <stdio.h>
-__global__ void vector_add(int *A, int *B, int *C, int N){
+__global__ void add_arrays(int *A, int *B, int *C, int N){
     int i=blockIdx.x*blockDim.x+threadIdx.x;
     if (i<N){
         C[i]=A[i]+B[i];
@@ -7,7 +7,7 @@ __global__ void vector_add(int *A, int *B, int *C, int N){
 }
 int main(){
     const int N=10;
-    int h_A[N], h_B[N], h_C[N];
+    int *h_A, *h_B, *h_C;
     h_A=(int*) malloc(N*sizeof(int));
     h_B=(int*) malloc(N*sizeof(int));
     h_C=(int*) malloc(N*sizeof(int));
@@ -42,7 +42,7 @@ int main(){
 
     cudaMemcpy(d_A,h_A,N*sizeof(int),cudaMemcpyHostToDevice);
     cudaMemcpy(d_B,h_B,N*sizeof(int),cudaMemcpyHostToDevice);
-    vector_add<<<1,N>>>(d_A,d_B,d_C,N);
+    add_arrays<<<1,N>>>(d_A,d_B,d_C,N);
     cudaMemcpy(h_C,d_C,N*sizeof(int),cudaMemcpyDeviceToHost);
     printf("Array A+B=C: \n");
     for (int i=0; i<N; i++){
